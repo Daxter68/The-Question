@@ -138,6 +138,76 @@
             z-index: 1;
         }
 
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+                background: #2d0a1f; /* Solid background for better performance */
+            }
+
+            .glass-container {
+                width: 100%;
+                padding: 1.5rem;
+                margin: 0 auto;
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px); /* For iOS */
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                line-height: 1.3;
+                margin-bottom: 1rem;
+            }
+
+            .message-section {
+                padding: 1.2rem;
+                margin: 1rem 0;
+            }
+
+            .message-text {
+                font-size: 1rem;
+                line-height: 1.5;
+                br { display: none; } /* Remove line breaks on mobile */
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 1.5rem;
+            }
+
+            .action-btn {
+                width: 100%;
+                padding: 1rem;
+                font-size: 1rem;
+            }
+
+            .hidden-response {
+                width: 90%;
+                padding: 1.5rem;
+                h2 { font-size: 1.5rem; }
+                p { font-size: 1rem; }
+            }
+
+            .corner-roses {
+                display: none; /* Remove decorative roses on mobile */
+            }
+
+            .rose, .blossom, .heart {
+                font-size: 1.5rem; /* Smaller floating elements */
+                animation-duration: 6s !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+            
+            .glass-container {
+                padding: 1rem;
+            }
+        }
+
         @keyframes float {
             0% {
                 transform: translateY(100vh) rotate(0deg);
@@ -223,6 +293,47 @@
                     noBtn.remove();
                 }, 300);
             });
+
+            document.addEventListener('DOMContentLoaded', () => {
+            // Previous code remains unchanged
+
+            // Mobile-friendly touch events
+            noBtn.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                handleNoButton();
+            });
+
+            function handleNoButton() {
+                noBtn.style.opacity = '0';
+                noBtn.style.transform = 'translateY(5px)';
+                noBtn.style.visibility = 'hidden';
+                
+                setTimeout(() => {
+                    noBtn.remove();
+                    document.querySelector('.button-group').style.gap = '0';
+                }, 300);
+            }
+
+            // Adjust animation intervals for mobile
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            if(isMobile) {
+                // Reduce animation intensity
+                setInterval(() => {
+                    createFlower(Math.random() > 0.5 ? 'rose' : 'blossom');
+                }, 3000);
+                
+                // Simplify click effects
+                yesBtn.addEventListener('click', () => {
+                    responseMessage.style.display = 'block';
+                    for(let i = 0; i < 15; i++) {
+                        setTimeout(() => {
+                            createFlower('rose');
+                            createHeart();
+                        }, i * 100);
+                    }
+                });
+            }
+        });
 
             // Create initial background hearts
             setInterval(createHeart, 500);
