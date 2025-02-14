@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "Tab Icon" type = "image/x-icon" href = "rose.png">  
+    <title>The Question</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #1a1a1a, #2d0a1f);
+            overflow: hidden;
+        }
+
+        .glass-container {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-shadow: 0 0 15px rgba(255,77,109,0.4);
+        }
+
+        .message-section {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .message-text {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .action-btn {
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #yesBtn {
+            background: linear-gradient(45deg, #ff4d6d, #ff758c);
+            color: white;
+            box-shadow: 0 0 20px rgba(255,77,109,0.3);
+        }
+
+        #noBtn {
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.8);
+            border: 1px solid rgba(255,255,255,0.2);
+            opacity: 1;
+            transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+        }
+
+        #noBtn:hover {
+            opacity: 0;
+            transform: translateY(5px);
+            visibility: hidden;
+        }
+
+        .hidden-response {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(25, 25, 25, 0.95);
+            padding: 2.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            animation: responseScale 0.3s ease;
+            z-index: 1000;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .hidden-response h2 {
+            color: #ff6b8b;
+            text-shadow: 0 0 10px rgba(255,107,139,0.3);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .hidden-response p {
+            color: rgba(255,255,255,0.95);
+            font-size: 1.1rem;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            animation: float 6s linear infinite;
+            opacity: 0.7;
+            font-size: 1.2rem;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-20vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes responseScale {
+            0% { transform: translate(-50%, -45%) scale(0.95); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .glass-container { padding: 2rem; }
+            h1 { font-size: 2rem; }
+            .message-text { font-size: 1rem; }
+            .hidden-response { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-container">
+        <h1>Yep THE question ( • ̀ω•́ )✧</h1>
+        
+        <div class="message-section">
+            <p class="message-text">
+                As you've no doubt put together i by now i do like you.<br>
+                And ofcourse i would like to explore and build this deeper getting to know you, but ofcourse the choice is yours aswell.
+            </p>
+        </div>
+
+        <div class="button-group">
+            <button class="action-btn" id="yesBtn">Yes, Let's Begin ❤️</button>
+            <button class="action-btn" id="noBtn">Maybe Later</button>
+        </div>
+
+        <div id="responseMessage" class="hidden-response">
+            <h2>❤️ Our Adventure Begins!</h2>
+            <p>(Cringe i know, i mean this whole thing is cringy,🤣🤣🤣🤣🤣)</p>
+            <p>(Oh and you'll have to let me know in whatsapp what you "chose" i can't know from the website itself😶‍🌫️😂)</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const yesBtn = document.getElementById('yesBtn');
+            const noBtn = document.getElementById('noBtn');
+            const responseMessage = document.getElementById('responseMessage');
+
+            function createHeart() {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 95 + 'vw';
+                heart.style.animationDuration = Math.random() * 3 + 4 + 's';
+                heart.style.fontSize = Math.random() * 10 + 15 + 'px';
+                heart.style.color = `hsl(${Math.random() * 360}, 70%, 60%)`;
+                document.body.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 6000);
+            }
+
+            yesBtn.addEventListener('click', () => {
+                responseMessage.style.display = 'block';
+                for(let i = 0; i < 50; i++) {
+                    setTimeout(() => {
+                        createHeart();
+                        createHeart();
+                    }, i * 50);
+                }
+            });
+
+            noBtn.addEventListener('mouseover', () => {
+                noBtn.style.opacity = '0';
+                noBtn.style.transform = 'translateY(5px)';
+                noBtn.style.visibility = 'hidden';
+                
+                setTimeout(() => {
+                    noBtn.remove();
+                }, 300);
+            });
+
+            // Create initial background hearts
+            setInterval(createHeart, 500);
+        });
+    </script>
+</body>
+</html>
